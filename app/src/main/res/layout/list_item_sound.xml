@@ -1,0 +1,15 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.beatbox.SoundViewModel"/>
+    </data>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        tools:text="Sound name"
+        android:onClick="@{() -> viewModel.onButtonClicked()}"
+        android:text="@{`File Name: ` + viewModel.title ?? `No File`}"
+        android:layout_marginHorizontal="10dp" />
+</layout>

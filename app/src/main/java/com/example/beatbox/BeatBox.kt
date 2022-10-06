@@ -1,10 +1,12 @@
 package com.example.beatbox
 
+import android.content.Context
 import android.content.res.AssetFileDescriptor
 import android.content.res.AssetManager
 import android.media.SoundPool
 import android.util.Log
 import java.io.IOException
+import java.lang.IllegalStateException
 
 private const val TAG = "BeatBox"
 private const val SOUNDS_FOLDER = "sample_sounds"

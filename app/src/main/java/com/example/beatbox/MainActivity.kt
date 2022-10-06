@@ -1,9 +1,12 @@
 package com.example.beatbox
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.beatbox.databinding.ActivityMainBinding
@@ -11,28 +14,32 @@ import com.example.beatbox.databinding.ListItemSoundBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var beatBox: BeatBox
+    private lateinit var  beatBoxViewModel : BeatBoxJetPackViewModel
 
+
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
-        beatBox = BeatBox(assets)
+        val factoryModel =  BeatBoxFactoryModel(assets)
+        beatBoxViewModel = ViewModelProvider(this, factoryModel).get(BeatBoxJetPackViewModel::class.java)
 
         val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.recyclerView.apply{
             layoutManager = GridLayoutManager(context, 3)
-            adapter = SoundAdapter(beatBox.sounds)
+            adapter = SoundAdapter(beatBoxViewModel.getSounds())
         }
     }
 
     override fun onDestroy(){
         super.onDestroy()
-        beatBox.release()
+        //beatBox.release()
     }
 
     private inner class SoundHolder(private val binding: ListItemSoundBinding): RecyclerView.ViewHolder(binding.root){
         init{
-            binding.viewModel = SoundViewModel(beatBox)
+            binding.viewModel = SoundViewModel(beatBoxViewModel.beatBox)
         }
 
         fun bind(sound: Sound){

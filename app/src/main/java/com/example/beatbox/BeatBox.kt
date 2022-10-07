@@ -10,7 +10,7 @@ import java.lang.IllegalStateException
 
 private const val TAG = "BeatBox"
 private const val SOUNDS_FOLDER = "sample_sounds"
-private const val MAX_SOUNDS : Int = 5
+private const val MAX_SOUNDS : Int = 1
 
 class BeatBox(private val assets: AssetManager) {
     val sounds : List<Sound>

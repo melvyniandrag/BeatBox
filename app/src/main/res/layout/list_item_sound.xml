@@ -1,15 +1,40 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="viewModel"
             type="com.example.beatbox.SoundViewModel"/>
     </data>
-    <Button
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        tools:text="Sound name"
-        android:onClick="@{() -> viewModel.onButtonClicked()}"
-        android:text="@{`File Name: ` + viewModel.title ?? `No File`}"
-        android:layout_marginHorizontal="10dp" />
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
+        <!--
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            tools:text="Sound name"
+            android:onClick="@{() -> viewModel.onButtonClicked()}"
+            android:text="@{ viewModel.title ?? `No File`}"
+            android:layout_gravity="center"/>
+            -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            app:cardCornerRadius="50dp">
+            <ImageButton
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                tools:text="Sound name"
+                android:onClick="@{() -> viewModel.onButtonClicked()}"
+                android:layout_gravity="center"
+                android:src="@drawable/button_beat_box"
+                android:background="@null"
+                android:scaleType="fitCenter" />
+        </androidx.cardview.widget.CardView>
+
+    </FrameLayout>
+
 </layout>

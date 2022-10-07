@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/melvy/Documents/BeatBox/app/src/main/res/drawable/beluga.xml" value="0.217" />
+        <entry key="..\:/Users/melvy/Documents/BeatBox/app/src/main/res/drawable/button_beat_box.xml" value="0.196" />
+        <entry key="..\:/Users/melvy/Documents/BeatBox/app/src/main/res/drawable/button_beat_box_normal.xml" value="0.196" />
+        <entry key="..\:/Users/melvy/Documents/BeatBox/app/src/main/res/drawable/button_beat_box_pressed.xml" value="0.196" />
         <entry key="..\:/Users/melvy/Documents/BeatBox/app/src/main/res/layout/activity_main.xml" value="0.529891304347826" />
         <entry key="..\:/Users/melvy/Documents/BeatBox/app/src/main/res/layout/list_item_sound.xml" value="0.5366847826086957" />
       </map>

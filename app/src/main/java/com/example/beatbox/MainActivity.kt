@@ -1,5 +1,7 @@
 package com.example.beatbox
 
+import android.content.res.Resources
+import android.graphics.drawable.Drawable
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -16,6 +18,24 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var  beatBoxViewModel : BeatBoxJetPackViewModel
 
+    private val drawableIDs : List<Int> = listOf(
+        R.drawable.beluga,
+        R.drawable.hecker,
+        R.drawable.belumom,
+        R.drawable.lester,
+        R.drawable.mark,
+        R.drawable.pablo,
+        R.drawable.skittlechan,
+        R.drawable.belugajr,
+        R.drawable.bigpapa,
+        R.drawable.elon,
+        R.drawable.eugene,
+        R.drawable.skittle,
+        R.drawable.snowball,
+        R.drawable.vladimir,
+        R.drawable.walt
+    )
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.recyclerView.apply{
             layoutManager = GridLayoutManager(context, 3)
-            adapter = SoundAdapter(beatBoxViewModel.getSounds())
+            adapter = SoundAdapter(beatBoxViewModel.getSounds(), drawableIDs)
         }
     }
 
@@ -42,15 +62,16 @@ class MainActivity : AppCompatActivity() {
             binding.viewModel = SoundViewModel(beatBoxViewModel.beatBox)
         }
 
-        fun bind(sound: Sound){
+        fun bind(sound: Sound,imgSrc: Drawable){
             binding.apply{
                 viewModel?.sound = sound
+                viewModel?.imgSrc = imgSrc
                 executePendingBindings()
             }
         }
     }
 
-    private inner class SoundAdapter(private val sounds: List<Sound>) : RecyclerView.Adapter<SoundHolder>(){
+    private inner class SoundAdapter(private val sounds: List<Sound>, private val drawableIDs: List<Int>) : RecyclerView.Adapter<SoundHolder>(){
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SoundHolder {
             val binding = DataBindingUtil.inflate<ListItemSoundBinding>(
                 layoutInflater,
@@ -63,7 +84,9 @@ class MainActivity : AppCompatActivity() {
 
         override fun onBindViewHolder(holder:SoundHolder, position: Int){
             val sound = sounds[position]
-            holder.bind(sound)
+            val resources : Resources = applicationContext.resources
+            val imgSrc : Drawable = resources.getDrawable(drawableIDs[position % 15])
+            holder.bind(sound, imgSrc)
         }
 
         override fun getItemCount() = sounds.size

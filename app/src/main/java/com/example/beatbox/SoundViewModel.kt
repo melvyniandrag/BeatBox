@@ -1,5 +1,7 @@
 package com.example.beatbox
 
+import android.content.res.Resources
+import android.graphics.drawable.Drawable
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 
@@ -11,15 +13,24 @@ class SoundViewModel(private val beatBox: BeatBox) : BaseObservable(){
     }
 
     var sound: Sound? = null
+
     set(sound){
         field = sound
         notifyChange()
     }
-/*
-    @get: Bindable
-    val title: String?
-    get() = sound?.name
 
- */
+    var imgSrc: Drawable? = null
+    set(imgSrc){
+        field = imgSrc
+        notifyChange()
+    }
+
+
+    @get: Bindable
+    val btnImg: Drawable?
+        get() {
+            return imgSrc
+        }
+
 }
 

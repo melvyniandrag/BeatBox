@@ -20,7 +20,5 @@
     <style name="BeatBoxButton" parent="Widget.AppCompat.Button">
         <item name="android:background">@drawable/button_beat_box</item>
     </style>
-    <style name="BeatBoxImageButton" parent="Widget.AppCompat.ImageButton">
-        <item name="android:src">@drawable/button_beat_box</item>
-    </style>
+
 </resources>
